@@ -1,5 +1,6 @@
 package com.example.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Customers {
 	
 	private String lastName;
 	
-	private LocalDateTime birthDate;
+	private LocalDate birthDate;
 
 	private String phone;
 	
@@ -42,4 +43,15 @@ public class Customers {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "customerId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Orders> orders;
+	
+	public Customers update(String firstName, String lastName, String phone, 
+			String address, String city, int points) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.address = address;
+		this.city = city;
+		this.points = points;
+		return this;
+	}
 }
